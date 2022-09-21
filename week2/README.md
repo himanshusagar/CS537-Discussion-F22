@@ -1,51 +1,29 @@
 ## xv6 and GDB
-To run xv6 with gdb: in one window
+To run xv6 with gdb: 
 
-```bash
-$ make qemu-nox-gdb
+1. Change -O2 flag in Makefile to -Og
+
+Before:
+
+```c
+CFLAGS = -fno-pic -static -fno-builtin -fno-strict-aliasing -O2...
+```
+After:
+```c
+CFLAGS = -fno-pic -static -fno-builtin -fno-strict-aliasing -Og...
 ```
 
-then in another window:
-
-```bash
-$ gdb kernel
-```
-You might get the error message blow:
-
-```bash
-$ gdb
-GNU gdb (Ubuntu 9.2-0ubuntu1~20.04) 9.2
-Copyright (C) 2020 Free Software Foundation, Inc.
-License GPLv3+: GNU GPL version 3 or later <http://gnu.org/licenses/gpl.html>
-This is free software: you are free to change and redistribute it.
-There is NO WARRANTY, to the extent permitted by law.
-Type "show copying" and "show warranty" for details.
-This GDB was configured as "x86_64-linux-gnu".
-Type "show configuration" for configuration details.
-For bug reporting instructions, please see:
-<http://www.gnu.org/software/gdb/bugs/>.
-Find the GDB manual and other documentation resources online at:
-    <http://www.gnu.org/software/gdb/documentation/>.
-
-For help, type "help".
-Type "apropos word" to search for commands related to "word".
-warning: File "/dir/xv6/.gdbinit" auto-loading has been declined by your `auto-load safe-path' set to "$debugdir:$datadir/auto-load".
-To enable execution of this file add
-        add-auto-load-safe-path /dir/xv6/.gdbinit
-line to your configuration file "/u/c/h/chenhaoy/.gdbinit".
-To completely disable this security protection add
-        set auto-load safe-path /
-line to your configuration file "/u/c/h/chenhaoy/.gdbinit".
-For more information about this security protection see the
---Type <RET> for more, q to quit, c to continue without paging--
-```
-
-Recent gdb versions will not automatically load `.gdbinit` for security purposes. You could either:
+2. Recent gdb versions will not automatically load `.gdbinit` for security purposes. You should do both:
 
 - `echo "add-auto-load-safe-path $(pwd)/.gdbinit" >> ~/.gdbinit`. This enables the autoloading of `.gdbinit` in the current working directory.
 - `echo "set auto-load safe-path /" >> ~/.gdbinit`. This enables the autoloading of every `.gdbinit`
 
-After either operation, you should be able to launch gdb. Specify you want to attach to the kernel
+3. In one window
+
+```bash
+$ make qemu-nox-gdb
+```
+3. then in another window:
 
 ```bash
 $ gdb kernel
