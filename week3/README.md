@@ -2,9 +2,9 @@
 
 The plan for this week:
 - Shell Overview
-- Problems with Strings.
+- Strings in C
 
-## Shell Overview:
+# Shell Overview
 Shell is a program that takes input as "commands" line by line, parses them, then
 - For most of the commands, the shell will create a new process and load it with an executable file to run. E.g. `gcc`, `ls`
 - For some commands, the shell will react to them directly without creating a new process. These are called "built-in" commands. E.g. `alias`
@@ -121,7 +121,7 @@ waitpid(pid, &status, 0); // wait the child to finish its work before keep going
 // continue to handle the next command
 ```
 
-# Strings in C.
+# Strings in C
 
 ## StrTok
 The C library function char *strtok(char *str, const char *delim) breaks string str into a series of tokens using the delimiter delim.
