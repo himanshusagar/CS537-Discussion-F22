@@ -94,7 +94,7 @@ pid_t waitpid(pid_t pid, int *status, int options);
 
 This syscall will suspend the parent process and resume again when the child is done. It takes three arguments: `pid`, a pointer to an int `status`, and some flags `options`. `pid` is the pid of the child that the parent wants to waiit. `status` is a pointer pointing a piece of memory that `waitpid` could write the status to. `options` allows you to configure when `waitpid` should return. By default (`options = 0`), it only returns when the child terminates. This should be sufficient for this project.
 
-Side note: NEVER write code like this:
+## Question : What's wrong with following code?
 
 ```C
 // assume we know pid
@@ -148,10 +148,25 @@ The function strdup() is used to duplicate a string. It returns a pointer to nul
 
 Source : [TutorialsPoint](https://www.tutorialspoint.com/strdup-and-strdndup-in-c-cplusplus)
 
-
-## Backslash zero - `\0`.
+## Debugging backslash zero - `\0`
 
 Backslash zero may seem innocents but since memory management is taken care of by programmar in C, things can get a bit hectic.
+
+Step 1 : Compile program for backslash zero
+
+`make backslash`
+
+Step 2 : Run it. Press enter key one by one to slowly browse though code while it spits out useful pointer related information.
+
+`./backslash`
+
+Step 3 : Run it with gdb to see string array.
+
+`gdb backslash`
+
+`run`
+
+### Solution: 
 
 ```C
 // Demo of BackSlash 0 pitfalls.
@@ -181,14 +196,3 @@ strcat(ptr , append);
 printf("After append string %s's length is %ld \n" , ptr ,  strlen(ptr) );
 printf("So, ptr[%d] is still %c \n" , 9 ,  ptr[9]);
 ```
-
-
-### Demo of backslash zero - `\0`.
-
-Step 1 : Compile programm for backslash zero
-
-`make backslash`
-
-Step 2 : Run it. Press enter key one by one to slowly browse though code while it spits out useful pointer related information.
-
-`./backslash`
