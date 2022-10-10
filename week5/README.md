@@ -332,7 +332,8 @@ There are two interesting things going on here:
 
 ## Exercise: Passing structs to syscall. 
 
-We'll create syscall - **demo** and call it from user program.
+We'll create syscall - **demo** and call it from user program. 
+Goal of this exercise is to be more comfortable with xv6 and learn how to pass complex data structure to syscalls.
 
 ```C
 //Struct Structure
