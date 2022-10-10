@@ -330,4 +330,56 @@ There are two interesting things going on here:
 1. If it is a timer interrupt `case T_IRQ0 + IRQ_TIMER`: the global variable `ticks` gets incremented
 2. If it is a timer interrupt satisfying `myproc() && myproc()->state == RUNNING && tf->trapno == T_IRQ0+IRQ_TIMER`: call `yield()`, which then relinquish CPU and gets into scheduler
 
-## Demo: Passing structs to syscall. 
+## Exercise: Passing structs to syscall. 
+
+We'll create syscall - **demo** and call it from user program.
+
+```C
+//Struct Structure
+typedef struct _complexData
+{
+    int aInt;
+    char* aStr;
+    char aChar;
+} complexData;
+```
+```C
+// Sample code to call syscall - demo from user program.
+#include "types.h"
+#include "stat.h"
+#include "user.h"
+
+int my_strlen(char* data)
+{
+  char * tmp = data;
+  if(tmp == 0)
+    return 0;
+  int i = 0;
+  while(tmp[i++] != 0);
+    return i;
+}
+
+int
+main(int argc, char **argv)
+{
+  char* data = "Sent";
+  int size = my_strlen(data);
+  complexData cData;
+  cData.aInt = 10;
+  cData.aChar = 'a';
+  cData.aStr = (char*)malloc(size + 1);
+  for (int i = 0; i < size ; i++)
+  {
+    cData.aStr[i] = data[i];
+  }
+  cData.aStr[size] = '\0';
+  if( demo( &cData ) == -1)
+      printf(2, "complexData send failed");
+  
+  printf(2 , "cData.aInt %d \n" , cData.aInt);
+  printf(2 , "cData.aChar %c \n" , cData.aChar);
+  printf(2 , "cData.aString %s \n" , cData.aStr);
+  
+  exit();
+}
+```
