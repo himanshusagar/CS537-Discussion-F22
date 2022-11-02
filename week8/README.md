@@ -28,10 +28,12 @@ Signal() {
 
 There are two types of semaphores:
 
-* Counting Semaphores: Acts as a shared counter. Typically used to coordinate access to shared resources, where the count is initialized to th enumber of free resources. If the count is ever 0, then it will exist in the unavailable state. However, if the count is greater than 0, the semaphore is in the available state.
+**Counting Semaphores:** Acts as a shared counter. Typically used to coordinate access to shared resources, where the count is initialized to th enumber of free resources. If the count is ever 0, then it will exist in the unavailable state. However, if the count is greater than 0, the semaphore is in the available state.
+
 ![](counter.png)
 
-* Binary Semaphores: Similar in nature to counting semaphores, although the count is restricted to only 0 and 1. Thus, the only state transitions are between unavailable and available, instead of being able to transition state from available to available. 
+**Binary Semaphores:** Similar in nature to counting semaphores, although the count is restricted to only 0 and 1. Thus, the only state transitions are between unavailable and available, instead of being able to transition state from available to available. 
+
 ![](binary.png)
 
 
