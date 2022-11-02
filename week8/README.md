@@ -37,13 +37,14 @@ There are two types of semaphores:
 ![](binary.png)
 
 
->Note that **semaphores are quite similar to mutexes**. There is a somewhat popular example of the core differences called **The Bathroom Example**:
->* Mutexes: A single key to the bathroom. One person can have the key and occupy the bathroom at a time. When finished, the person exits the bathroom and gives the key to the next person in the queue.
->* Semaphores: Multiple unoccupied identical bathroom keys. If we have multiple bathrooms with identical locks and keys, the semaphore count is set to that number, and as people occupy the bathrooms, the count is decremented. As people leave the bathrooms, the count is incremented. Hence, when the count is 0, the semaphore is in the unavailable state. But when one person exits the bathroom and the count is reset back to 1, the semaphore is once again available.
->
->**How do binary semaphores differ from mutexes?** Semaphores can be used as mutexes, although mutexes can never be used as semaphores. In the case of a binary semaphore, there is only one bathroom, so within the scope of the analogy above, they operate identically. However, the main difference is that a binary semaphore can be used for synchronization (i.e. "Hey someone! This thing occurred!") The "giver" notifies the "taker" that what they were waiting for happened. 
->
->Imagine if, in the bathroom example, we have to wait for class to be over to go to the bathroom. The bathroom is theoretically available, however we still need to `wait()` for the professor to `signal()` that class has ended. This situation is something semaphores allow us to mimic, although mutexes could never.
+### Note that **semaphores are quite similar to mutexes**. There is a somewhat popular example of the core differences called **The Bathroom Example**:
+* Mutexes: A single key to the bathroom. One person can have the key and occupy the bathroom at a time. When finished, the person exits the bathroom and gives the key to the next person in the queue.
+* Semaphores: Multiple unoccupied identical bathroom keys. If we have multiple bathrooms with identical locks and keys, the semaphore count is set to that number, and as people occupy the bathrooms, the count is decremented. As people leave the bathrooms, the count is incremented. Hence, when the count is 0, the semaphore is in the unavailable state. But when one person exits the bathroom and the count is reset back to 1, the semaphore is once again available.
+
+**How do binary semaphores differ from mutexes?** Semaphores can be used as mutexes, although mutexes can never be used as semaphores. In the case of a binary semaphore, there is only one bathroom, so within the scope of the analogy above, they operate identically. However, the main difference is that a binary semaphore can be used for synchronization (i.e. "Hey someone! This thing occurred!") The "giver" notifies the "taker" that what they were waiting for happened. 
+
+Imagine if, in the bathroom example, we have to wait for class to be over to go to the bathroom. The bathroom is theoretically available, however we still need to `wait()` for the professor to `signal()` that class has ended. This situation is something semaphores allow us to mimic, although mutexes could never.
+
 ---
 ## How do semaphores allow us to address the producer and consumer problem?
 Use 3 semaphores: two counters and one binary:
