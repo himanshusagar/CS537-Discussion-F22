@@ -1,6 +1,6 @@
 # Discussion Materials Week 9
 
-Next assignment will be about kernel thread creation. In order to create new thread which runs some given function and on its own stack, you must have understaning of how function call works in OS. Specifically, Here, We will study exactly how the stack works when calling a function.
+Next assignment will be about kernel thread creation. In order to create new thread which runs given function, shares the calling process's address space. and on its own private stack, you must have understaning of how function call works in OS. Specifically, Here, We will study exactly how the stack works when calling a function.
 
 ## XV-6 Function Call  
 Each computer program uses a region of memory called the stack to enable functions to work properly. Hence it is crucial to understand how stack is utilized in the function call. 
