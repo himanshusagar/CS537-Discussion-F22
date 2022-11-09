@@ -120,7 +120,8 @@ int FetchAndAdd(int *ptr) {
   return old;
   }
 ```
-![x86 implementation](x86_FAA.png)
+
+<img src='x86_FAA.png' width='1000'>
 It relatively simple hardware instruction which atomically increment a value while returning the old value at a particular address. For completeness, x86 implementation is also included. After understading FAA, let's see how it can be used in building locks. 
 
 ```
