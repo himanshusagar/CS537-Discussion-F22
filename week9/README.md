@@ -5,7 +5,7 @@ We will study exactly how the stack works when calling a function.
 ## XV-6 Function Call  
 Each computer program uses a region of memory called the stack to enable functions to work properly. Hence it is crucial to understand how stack is utilized in the function call. 
 
-Firstly, let's review some terminology about stack and registers.  The stack register ```%esp```, always contains a pointer to the current top of the stack, wherever it is. ```%ebp``` is the base pointer for the current stack frame.
+Firstly, let's review some terminology about stack and registers. ```%esp``` is the current stack pointer, which will change any time a word or address is pushed or popped onto/off off the stack. ```%ebp``` base register is a more convenient way for the compiler to keep track of a function's parameters and local variables than using the ```%esp``` directly.
 
 We will take a look at how a function call works in a real program. The function we are going to write is the power function. The following is the assembly code for the complete program.
 
@@ -71,10 +71,9 @@ end_power:
 
 We will understand the program step by step and visulize the configuration of the stack in each step. 
 
-###Before function execution:
+### Before function execution:
 A program pushes all of the parameters for the
-function onto the stack in the reverse order that they are documented. Here, we will push base number and exponent onto the stack. Then the call instruction, push the return address i.e the address of the next instruction to be executed after the function returns will push it. Then it modifies the
-instruction pointer ```%eip``` to point to the start of the function. 
+function onto the stack in the reverse order that they are documented. Here, we will push base number and exponent onto the stack. Then the ```call``` instruction, push the return address (the address of the next instruction to be executed after the function returns). Then it modifies the instruction pointer ```%eip``` to point to the start execution of the function. 
 
 
 ```
@@ -104,7 +103,9 @@ Local Variable   <--- -4(%ebp) and (%esp)
 ```
 
 ### After function execution:
-Program stores it’s return value in ```%eax```. It reconfigure stack frame to where it was called from. Specifcally, it moves ```%esp``` to ```%ebp``` and put the ```%eax``` to the original location. ```ret```  instruction will pops value is at the top of the stack, and sets the instruction pointer, ```%eax```, to that value. As you can see, all the local variable are gone. In the final stage, timer interrupt is performed and control is given to the OS.  
+When a function is done executing, it does three things: Firstly,it stores return value in ```%eax```. Secondly, it reconfigure stack frame to where it was called from. Specifcally, it moves ```%esp``` to ```%ebp``` and put the ```%eax``` to the original location. And lastly, ```ret```  instruction will pops value is at the top of the stack, and sets the instruction pointer, ```%eax```, to that value. 
+
+In the final stage, timer interrupt is performed and control is given to the OS.  
 
 
 
