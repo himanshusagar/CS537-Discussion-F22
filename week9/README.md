@@ -1,11 +1,11 @@
 # Discussion Materials Week 9
 
-We will study exactly how the stack works when calling a function.
+Next assignment will be about kernel thread creation. In order to create new thread which runs some given function and on its own stack, you must have understaning of how function call works in OS. Specifically, Here, We will study exactly how the stack works when calling a function.
 
 ## XV-6 Function Call  
 Each computer program uses a region of memory called the stack to enable functions to work properly. Hence it is crucial to understand how stack is utilized in the function call. 
 
-Firstly, let's review some terminology about stack and registers. ```%esp``` is the current stack pointer, which will change any time a word or address is pushed or popped onto/off off the stack. ```%ebp``` base register is a more convenient way for the compiler to keep track of a function's parameters and local variables than using the ```%esp``` directly.
+Firstly, let's review some terminology about stack and registers. ```%esp``` is the current stack pointer, which will change any time a word or address is pushed or popped onto/off off the stack. ```%ebp``` base register is a more convenient way for the compiler to keep track of a function's parameters and local variables than using the ```%esp``` directly. You could assume that the stack pointer can be used for this. However, you may use the stack for additional purposes throughout your program, like as passing arguments to other functions which changes stack pointer. 
 
 We will take a look at how a function call works in a real program. The function we are going to write is the power function. The following is the assembly code for the complete program.
 
