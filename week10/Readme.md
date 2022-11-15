@@ -1,9 +1,11 @@
+# Reader Writer Lock
+
 A readers–writer is a synchronization primitive that solves one of the readers–writers problems. An RW lock allows concurrent access for read-only operations, write operations require exclusive access. 
 Multiple threads can read the data in parallel but an exclusive lock is needed for writing or modifying data. 
 When a writer is writing the data, all other writers or readers will be blocked until the writer is finished writing. 
 A common use might be to control access to a data structure in memory that cannot be updated atomically and is invalid (and should not be read by another thread) until the update is complete.
 
-**Priority Policies:**
+## Priority Policies:
 RW locks can be designed with different priority policies for reader vs. writer access. The lock can either be designed to always give priority to readers (read-preferring), to always give priority to writers (write-preferring). These policies lead to different tradeoffs with regards to concurrency and starvation.
 
 **Read-preferring RW locks**
@@ -46,7 +48,7 @@ writer_active: whether a writer has acquired the lock
 ![Screen Shot 2022-11-15 at 13 23 08](https://user-images.githubusercontent.com/20151037/202007882-491797a9-1bf9-4b66-9179-f168cfc2b828.png)
 
 
-Practice Questions on Concurrency:
+## Practice Questions on Concurrency:
 
 Q1. Given a thread safe implementation of add() :
 
@@ -68,7 +70,7 @@ Ans: m is a local variable, xchg comparison should be with 1
 
 Ans: m is a local variable
 
-RAID (Redundant Array of Inexpensive Disks)
+# RAID (Redundant Array of Inexpensive Disks)
 A technique to use multiple disks in concert to build a faster, bigger, and more reliable disk system.
 Transparently provides benefits like:
 - Performance
@@ -85,7 +87,7 @@ Transparently provides benefits like:
 
 ![Screen Shot 2022-11-15 at 14 34 29](https://user-images.githubusercontent.com/20151037/202033316-1dbce933-795e-4daf-8f60-249d9bd074c7.png)
 
-Practice problem on RAID:
+## Practice problem on RAID:
 
 Q1. For this question, we’ll examine how long it takes to perform a small workload consisting of 12 writes to random
 locations within a RAID. Assume that these random writes are spread “evenly” across the disks of the RAID.
